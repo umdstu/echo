@@ -36,6 +36,7 @@
 
   echo.init = function (opts) {
     opts = opts || {};
+    var domElement = document.getElementById(opts.domElement) || root;
     var offsetAll = opts.offset || 0;
     var offsetVertical = opts.offsetVertical || offsetAll;
     var offsetHorizontal = opts.offsetHorizontal || offsetAll;
@@ -54,11 +55,11 @@
     callback = opts.callback || callback;
     echo.render();
     if (document.addEventListener) {
-      root.addEventListener('scroll', debounceOrThrottle, false);
-      root.addEventListener('load', debounceOrThrottle, false);
+      domElement.addEventListener('scroll', debounceOrThrottle, false);
+      domElement.addEventListener('load', debounceOrThrottle, false);
     } else {
-      root.attachEvent('onscroll', debounceOrThrottle);
-      root.attachEvent('onload', debounceOrThrottle);
+      domElement.attachEvent('onscroll', debounceOrThrottle);
+      domElement.attachEvent('onload', debounceOrThrottle);
     }
   };
 
